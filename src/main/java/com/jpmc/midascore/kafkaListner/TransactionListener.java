@@ -4,6 +4,8 @@ import com.jpmc.midascore.component.DatabaseConduit;
 import com.jpmc.midascore.entity.UserRecord;
 import com.jpmc.midascore.foundation.Transaction;
 import jakarta.transaction.Transactional;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
@@ -11,6 +13,8 @@ import org.springframework.stereotype.Component;
 public class TransactionListener {
 
     protected final DatabaseConduit  databaseConduit;
+
+    static final Logger logger = LoggerFactory.getLogger(TransactionListener.class);
 
     public TransactionListener(DatabaseConduit databaseConduit) {
         this.databaseConduit = databaseConduit;
@@ -42,6 +46,6 @@ public class TransactionListener {
             databaseConduit.save(recipient);
         }
 
-        System.out.println("Received transaction: " + transaction);
+        logger.info("Received transaction: {}", transaction);
     }
 }
