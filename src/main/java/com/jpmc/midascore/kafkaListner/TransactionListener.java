@@ -3,7 +3,6 @@ package com.jpmc.midascore.kafkaListner;
 import com.jpmc.midascore.clients.IncentiveClient;
 import com.jpmc.midascore.component.DatabaseConduit;
 import com.jpmc.midascore.entity.UserRecord;
-import com.jpmc.midascore.foundation.Balance;
 import com.jpmc.midascore.foundation.Transaction;
 import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
@@ -31,8 +30,6 @@ public class TransactionListener {
     )
     @Transactional
     public void listen(Transaction transaction) {
-        // For Task 2, do nothing.
-        // Just receiving the transaction is enough.
         long senderId = transaction.getSenderId();
         long recipientId = transaction.getRecipientId();
         float amount = transaction.getAmount();
