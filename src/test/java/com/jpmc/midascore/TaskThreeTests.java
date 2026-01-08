@@ -1,5 +1,6 @@
 package com.jpmc.midascore;
 
+import com.jpmc.midascore.component.DatabaseConduit;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,6 +23,8 @@ public class TaskThreeTests {
 
     @Autowired
     private FileLoader fileLoader;
+    @Autowired
+    private DatabaseConduit databaseConduit;
 
     @Test
     void task_three_verifier() throws InterruptedException {
@@ -37,6 +40,7 @@ public class TaskThreeTests {
         logger.info("----------------------------------------------------------");
         logger.info("----------------------------------------------------------");
         logger.info("use your debugger to find out what waldorf's balance is after all transactions are processed");
+        logger.info("waldorf's balance: {}", databaseConduit.getUserRecordByName("waldorf"));
         logger.info("kill this test once you find the answer");
         while (true) {
             Thread.sleep(20000);
